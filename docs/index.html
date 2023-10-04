@@ -41,11 +41,21 @@
         #score {
             font-weight: bold;
         }
+
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+
+        .incorrect {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Jeu Octobre Rose</h1>
+        <h1>Quiz sur le Cancer du Sein</h1>
         <div id="question-container">
             <p id="question-text"></p>
             <div id="answers"></div>
@@ -56,21 +66,50 @@
     <script>
         const questions = [
             {
-                question: "Quel est l'organe principal affecté par le cancer du sein ?",
-                réponses: ["Le sein", "Le poumon", "Le foie"],
+                question: "Quel est le mois de sensibilisation au cancer du sein ?",
+                réponses: ["Octobre", "Novembre", "Décembre"],
                 réponse_correcte: 0
             },
             {
-                question: "Quel est le mois de sensibilisation au cancer du sein ?",
-                réponses: ["Mai", "Octobre", "Décembre"],
+                question: "Qui peut développer un cancer du sein ?",
+                réponses: ["Les femmes uniquement", "Les hommes uniquement", "Les femmes et les hommes"],
+                réponse_correcte: 2
+            },
+            {
+                question: "À quel âge les femmes devraient-elles commencer à effectuer des mammographies de dépistage régulières ?",
+                réponses: ["30 ans", "40 ans", "50 ans"],
                 réponse_correcte: 1
             },
             {
-                question: "Quel pourcentage de cancers du sein sont diagnostiqués à un stade précoce ?",
-                réponses: ["10%", "50%", "70%"],
+                question: "Quels sont les facteurs de risque connus du cancer du sein ?",
+                réponses: ["Manger des bonbons", "Le tabagisme", "L'âge, les antécédents familiaux et le sexe"],
                 réponse_correcte: 2
+            },
+            {
+                question: "Quel est le principal moyen de dépistage précoce du cancer du sein ?",
+                réponses: ["Échographie", "Biopsie", "Mammographie"],
+                réponse_correcte: 2
+            },
+            {
+                question: "Que signifie l'acronyme 'AUTOCHEK' en rapport avec le cancer du sein ?",
+                réponses: ["Un groupe de soutien pour les patients atteints de cancer du sein", "Un programme de dépistage du cancer du sein", "Une organisation caritative pour la recherche sur le cancer"],
+                réponse_correcte: 1
+            },
+            {
+                question: "Quel symptôme peut être un signe de cancer du sein ?",
+                réponses: ["Douleur abdominale", "Changement de la taille, de la forme ou de la texture du sein", "Toux persistante"],
+                réponse_correcte: 1
+            },
+            {
+                question: "Quelle est la couleur traditionnelle associée à la sensibilisation au cancer du sein ?",
+                réponses: ["Bleu", "Vert", "Rose"],
+                réponse_correcte: 2
+            },
+            {
+                question: "Pourquoi est-il important de promouvoir la sensibilisation au cancer du sein ?",
+                réponses: ["Pour collecter des dons", "Pour encourager la prévention et le dépistage précoce", "Pour vendre des produits de beauté"],
+                réponse_correcte: 1
             }
-            // Ajoutez ici d'autres questions avec le même format
         ];
 
         let questionIndex = 0;
@@ -96,23 +135,16 @@
                 questionText.textContent = "Jeu terminé !";
                 answersDiv.innerHTML = "";
                 nextButton.style.display = "none";
-            }
-        }
 
-        function vérifierRéponse(index) {
-            if (index === questions[questionIndex].réponse_correcte) {
-                score++;
-            }
-            questionIndex++;
-            afficherQuestion();
-            if (questionIndex === questions.length) {
-                scoreText.textContent = `Score final : ${score}/${questions.length}`;
-            }
-        }
-
-        nextButton.addEventListener("click", afficherQuestion);
-
-        afficherQuestion();
-    </script>
-</body>
-</html>
+                // Afficher les réponses
+                const réponsesText = document.createElement("p");
+                réponsesText.innerHTML = `
+                    Réponses : <br><br>
+                    Section 1 : Questions générales <br>
+                    1. Quel est le mois de sensibilisation au cancer du sein ? <br>
+                    • Réponse : <span class="correct">A) Octobre</span> <br>
+                    2. Qui peut développer un cancer du sein ? <br>
+                    • Réponse : <span class="correct">C) Les femmes et les hommes</span> <br>
+                    3. À quel âge les femmes devraient-elles commencer à effectuer des mammographies de dépistage régulières ? <br>
+                    • Réponse : <span class="correct">B) 40 ans</span> <br><br>
+                    Section 2 : Prévention et Dépistage <
