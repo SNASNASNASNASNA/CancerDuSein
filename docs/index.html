@@ -130,7 +130,6 @@
                 question.réponses.forEach((réponse, index) => {
                     const answerButton = document.createElement("button");
                     answerButton.textContent = réponse;
-                    answerButton.addEventListener("click", ()
                     answerButton.addEventListener("click", () => vérifierRéponse(index));
                     answersDiv.appendChild(answerButton);
                 });
