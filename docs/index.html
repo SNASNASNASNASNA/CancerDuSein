@@ -62,6 +62,7 @@
         </div>
         <button id="next-button">Question suivante</button>
         <p id="score">Score : 0</p>
+        <div id="responses" style="display: none;"></div>
     </div>
     <script>
         const questions = [
@@ -119,6 +120,7 @@
         const answersDiv = document.getElementById("answers");
         const nextButton = document.getElementById("next-button");
         const scoreText = document.getElementById("score");
+        const responsesDiv = document.getElementById("responses");
 
         function afficherQuestion() {
             if (questionIndex < questions.length) {
@@ -128,6 +130,7 @@
                 question.réponses.forEach((réponse, index) => {
                     const answerButton = document.createElement("button");
                     answerButton.textContent = réponse;
+                    answerButton.addEventListener("click", ()
                     answerButton.addEventListener("click", () => vérifierRéponse(index));
                     answersDiv.appendChild(answerButton);
                 });
@@ -137,8 +140,8 @@
                 nextButton.style.display = "none";
 
                 // Afficher les réponses
-                const réponsesText = document.createElement("p");
-                réponsesText.innerHTML = `
+                responsesDiv.style.display = "block";
+                responsesDiv.innerHTML = `
                     Réponses : <br><br>
                     Section 1 : Questions générales <br>
                     1. Quel est le mois de sensibilisation au cancer du sein ? <br>
@@ -147,4 +150,38 @@
                     • Réponse : <span class="correct">C) Les femmes et les hommes</span> <br>
                     3. À quel âge les femmes devraient-elles commencer à effectuer des mammographies de dépistage régulières ? <br>
                     • Réponse : <span class="correct">B) 40 ans</span> <br><br>
-                    Section 2 : Prévention et Dépistage <
+                    Section 2 : Prévention et Dépistage <br>
+                    4. Quels sont les facteurs de risque connus du cancer du sein ? <br>
+                    • Réponse : <span class="correct">C) L'âge, les antécédents familiaux et le sexe</span> <br>
+                    5. Quel est le principal moyen de dépistage précoce du cancer du sein ? <br>
+                    • Réponse : <span class="correct">C) Mammographie</span> <br>
+                    6. Que signifie l'acronyme 'AUTOCHEK' en rapport avec le cancer du sein ? <br>
+                    • Réponse : <span class="correct">B) Un programme de dépistage du cancer du sein</span> <br><br>
+                    Section 3 : Symptômes et Conscientisation <br>
+                    7. Quel symptôme peut être un signe de cancer du sein ? <br>
+                    • Réponse : <span class="correct">B) Changement de la taille, de la forme ou de la texture du sein</span> <br>
+                    8. Quelle est la couleur traditionnelle associée à la sensibilisation au cancer du sein ? <br>
+                    • Réponse : <span class="correct">C) Rose</span> <br>
+                    9. Pourquoi est-il important de promouvoir la sensibilisation au cancer du sein ? <br>
+                    • Réponse : <span class="correct">B) Pour encourager la prévention et le dépistage précoce</span> <br>
+                `;
+            }
+        }
+
+        function vérifierRéponse(index) {
+            if (index === questions[questionIndex].réponse_correcte) {
+                score++;
+            }
+            questionIndex++;
+            afficherQuestion();
+            if (questionIndex === questions.length) {
+                scoreText.textContent = `Score final : ${score}/${questions.length}`;
+            }
+        }
+
+        nextButton.addEventListener("click", afficherQuestion);
+
+        afficherQuestion();
+    </script>
+</body>
+</html>
